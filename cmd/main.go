@@ -3,10 +3,15 @@ package main
 import (
 	"fmt"
 
+	"flag"
+
 	"github.com/masim05/go-string-cluster/scluster"
 )
 
 func main() {
+	thresholdPtr := flag.Float64("threshold", 0.2, "threshold for weighted Levenstein distance")
+	flag.Parse()
+
 	input := []string{
 		"Joining task manager table",
 		"All the parameters should be provided.",
@@ -19,7 +24,8 @@ func main() {
 		"dbo.J2_INF_ADMIN_LIBRARY: Conversion failed when converting the nvarchar value 'Conversion failed when converting the nvarchar value 'Cannot insert duplicate key row in object 'dbo.##TempProSyncTable_7BBE029D_49AF_4C58_BDEE_2EFC263FA45A' with unique index 'TempProSyncTable_7BBE029D_49AF_4C58_BDEE_2EFC263FA45A_PK'. The duplicate key value is (berth).' to data type int.' to data type int.",
 	}
 
-	threshold := float32(0.2) // Порог для нормализованного расстояния Левенштейна
+	threshold := float32(*thresholdPtr)
+	fmt.Println(threshold)
 	clusters := scluster.ClusterStringSet(input, threshold)
 
 	fmt.Println("Кластеры строк:")
