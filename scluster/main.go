@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/masim05/go-string-cluster/scluster"
+	"github.com/masim05/go-string-cluster/pkg/scluster"
 )
 
 func main() {
