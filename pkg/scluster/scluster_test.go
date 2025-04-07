@@ -1,6 +1,7 @@
 package scluster
 
 import (
+	"slices"
 	"testing"
 )
 
@@ -33,9 +34,15 @@ func TestClusterStringSet(t *testing.T) {
 
 	for _, tc := range testCases {
 		actual := ClusterStringSet(tc.strings, tc.treashold)
-		// TODO: to compare content, not only length
+
 		if len(actual) != len(tc.expected) {
-			t.Errorf(tc.name, tc.expected, actual)
+			t.Errorf(tc.name, "length mismatch", tc.expected, actual)
+		}
+
+		for i := 0; i < len(tc.expected); i++ {
+			if !slices.Equal(actual[i], tc.expected[i]) {
+				t.Errorf(tc.name, "value mismatch", tc.expected, actual)
+			}
 		}
 	}
 
