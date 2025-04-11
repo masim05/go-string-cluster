@@ -4,7 +4,7 @@ A simple utility to cluster strings into groups of "similar" ones.
 # Problem
 Sometimes you need to analyze error messages and cluster them by the root
 cause. The error messages are not always exactly the same, since they might
-dynamic data. One can use Levenshtein distance to address it, however
+contain dynamic data. One can use Levenshtein distance to address it, however
 the messages might have different lengths, so it can be not easy to find a
 proper threshold.
 
